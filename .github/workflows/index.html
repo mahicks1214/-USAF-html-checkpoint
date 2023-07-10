@@ -1,36 +1,105 @@
-# This is a basic workflow to help you get started with Actions
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMDB</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#" onclick="showBrowseScreen()">Browse</a></li>
+        <li><a href="#">Login</a></li>
+      </ul>
+    </nav>
+  </header>
 
-name: CI
+  <main>
+    <section id="login">
+      <h2>Login</h2>
+      <form>
+        <input type="text" placeholder="Username">
+        <input type="password" placeholder="Password">
+        <button type="submit">Log in</button>
+      </form>
+    </section>
 
-# Controls when the workflow will run
-on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    <section id="browse">
+      <h2>Browse Movies</h2>
+      <div class="movie" id="movie1">
+        <img src="movie1.jpg" alt="Movie 1">
+        <h3>Movie 1</h3>
+        <p>Description of Movie 1</p>
+        <a href="#" onclick="showMovieDetails('movie1')">View Details</a>
+      </div>
+      <div class="movie" id="movie2">
+        <img src="movie2.jpg" alt="Movie 2">
+        <h3>Movie 2</h3>
+        <p>Description of Movie 2</p>
+        <a href="#" onclick="showMovieDetails('movie2')">View Details</a>
+      </div>
+      <div class="movie" id="movie3">
+        <img src="movie3.jpg" alt="Movie 3">
+        <h3>Movie 3</h3>
+        <p>Description of Movie 3</p>
+        <a href="#" onclick="showMovieDetails('movie3')">View Details</a>
+      </div>
+      <div class="movie" id="movie4">
+        <img src="movie4.jpg" alt="Movie 4">
+        <h3>Movie 4</h3>
+        <p>Description of Movie 4</p>
+        <a href="#" onclick="showMovieDetails('movie4')">View Details</a>
+      </div>
+      <div class="movie" id="movie5">
+        <img src="movie5.jpg" alt="Movie 5">
+        <h3>Movie 5</h3>
+        <p>Description of Movie 5</p>
+        <a href="#" onclick="showMovieDetails('movie5')">View Details</a>
+      </div>
+      <div class="movie" id="movie6">
+        <img src="movie6.jpg" alt="Movie 6">
+        <h3>Movie 6</h3>
+        <p>Description of Movie 6</p>
+        <a href="#" onclick="showMovieDetails('movie6')">View Details</a>
+      </div>
+    </section>
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
+    <section id="details" style="display: none;">
+      <h2>Movie Details</h2>
+      <div id="selectedMovie">
+        <!-- Selected movie will be displayed here -->
+        <button onclick="showBrowseScreen()">Go Back</button>
+      </div>
+    </section>
+  </main>
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+  <script>
+    function showMovieDetails(movieId) {
+      // Hide the browse screen
+      const browseSection = document.getElementById('browse');
+      browseSection.style.display = 'none';
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      // Show the movie details section
+      const detailsSection = document.getElementById('details');
+      detailsSection.style.display = 'block';
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      // Display the selected movie
+      const selectedMovie = document.getElementById(movieId);
+      selectedMovie.style.display = 'block';
+    }
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+    function showBrowseScreen() {
+      // Hide the movie details section
+      const detailsSection = document.getElementById('details');
+      detailsSection.style.display = 'none';
+
+      // Show the browse screen
+      const browseSection = document.getElementById('browse');
+      browseSection.style.display = 'block';
+    }
+  </script>
+</body>
+</html>
